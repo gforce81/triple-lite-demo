@@ -2,32 +2,72 @@ const offerData = {
   "recommended_offers": [
     {
       "id": "offer1",
-      "headline": "10% cash back at Groceries R Us", 
+      "headline": "Earn 2.0% cash back when you shop at 7 For All Mankind", 
       "reward_type": "PERCENTAGE",
-      "reward_rate": 10,
+      "reward_rate": 2,
       "reward_value": null,
-      "merchant_name": "Groceries R Us",
-      "merchant_logo_url": "https://example.com/groceries-r-us-logo.png",
+      "merchant_name": "7 For All Mankind",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/2fjnmivgtbagncfgx4towhr2pu.png",
       "merchant_url": "https://www.groceriesrus.com"
     },
     {
       "id": "offer2",
-      "headline": "$5 cash back at Coffee Spot",
-      "reward_type": "FIXED",
+      "headline": "Earn 1.0% cash back when you shop at Scuba.com",
+      "reward_type": "PERCENTAGE",
       "reward_rate": null,
-      "reward_value": 5,
-      "merchant_name": "Coffee Spot",
-      "merchant_logo_url": "https://example.com/coffeespot.jpg",
+      "reward_value": 1.0,
+      "merchant_name": "Scuba.com",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/btpwdeu5xrbrppo762ehae74we.png",
       "merchant_url": "https://www.thecoffeespot.com"
     },
     {
-      "id": "offer2",
-      "headline": "$5 cash back at Coffee Spot",
+      "id": "offer3",
+      "headline": "Earn 5.0% cash back when you shop at West Path",
+      "reward_type": "PERCENTAGE",
+      "reward_rate": null,
+      "reward_value": 5.0,
+      "merchant_name": "West Path",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/x477aw42avex5jtbypuce2riom.png",
+      "merchant_url": "https://www.thecoffeespot.com"
+    },
+        {
+      "id": "offer4",
+      "headline": "Earn 3.5% cash back when you shop at KimmyShop.com", 
+      "reward_type": "PERCENTAGE",
+      "reward_rate": 3.5,
+      "reward_value": null,
+      "merchant_name": "KimmyShop.com",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/4p734spcqbecvmh7od67atunpu.jpg",
+      "merchant_url": "https://www.groceriesrus.com"
+    },
+    {
+      "id": "offer5",
+      "headline": "Earn 3.5% cash back when you shop at P.J. Salvage",
+      "reward_type": "PERCENTAGE",
+      "reward_rate": null,
+      "reward_value": 3.5,
+      "merchant_name": "P.J. Salvage",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/4szrzk4jsfhoxlyzmq3ds6hfku.jpg",
+      "merchant_url": "https://www.thecoffeespot.com"
+    },
+    {
+      "id": "offer6",
+      "headline": "Earn $20.00 cash back when you shop at Boost Your Score",
       "reward_type": "FIXED",
       "reward_rate": null,
-      "reward_value": 5,
-      "merchant_name": "Coffee Spot",
-      "merchant_logo_url": "https://example.com/coffeespot.jpg",
+      "reward_value": 20.0,
+      "merchant_name": "Boost Your Score",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/hg3nyhgwwnbafgmllcaotica2q.png",
+      "merchant_url": "https://www.thecoffeespot.com"
+    },
+        {
+      "id": "offer7",
+      "headline": "Earn 5.0% cash back when you shop at Trust & Will",
+      "reward_type": "PERCENTAGE",
+      "reward_rate": null,
+      "reward_value": 5.0,
+      "merchant_name": "Trust & Will",
+      "merchant_logo_url": "https://d34ye2dnwzj2t5.cloudfront.net/qluemeg37rb5vep6dstr3ombzm.jpg",
       "merchant_url": "https://www.thecoffeespot.com"
     }
   ]
