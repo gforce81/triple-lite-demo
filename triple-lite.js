@@ -19,8 +19,17 @@ const offerData = {
       "merchant_name": "Coffee Spot",
       "merchant_logo_url": "https://example.com/coffeespot.jpg",
       "merchant_url": "https://www.thecoffeespot.com"
+    },
+    {
+      "id": "offer2",
+      "headline": "$5 cash back at Coffee Spot",
+      "reward_type": "FIXED",
+      "reward_rate": null,
+      "reward_value": 5,
+      "merchant_name": "Coffee Spot",
+      "merchant_logo_url": "https://example.com/coffeespot.jpg",
+      "merchant_url": "https://www.thecoffeespot.com"
     }
-    // ... more offers
   ]
 };
 
