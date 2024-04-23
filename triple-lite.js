@@ -1,3 +1,29 @@
+const offerData = {
+  "recommended_offers": [
+    {
+      "id": "offer1",
+      "headline": "10% cash back at Groceries R Us", 
+      "reward_type": "PERCENTAGE",
+      "reward_rate": 10,
+      "reward_value": null,
+      "merchant_name": "Groceries R Us",
+      "merchant_logo_url": "https://example.com/groceries-r-us-logo.png",
+      "merchant_url": "https://www.groceriesrus.com"
+    },
+    {
+      "id": "offer2",
+      "headline": "$5 cash back at Coffee Spot",
+      "reward_type": "FIXED",
+      "reward_rate": null,
+      "reward_value": 5,
+      "merchant_name": "Coffee Spot",
+      "merchant_logo_url": "https://example.com/coffeespot.jpg",
+      "merchant_url": "https://www.thecoffeespot.com"
+    }
+    // ... more offers
+  ]
+};
+
 window.TripleLite = (function () {
     // Private function to create and store a UUID for the current user
     function generateUUID() {
@@ -49,109 +75,6 @@ window.TripleLite = (function () {
         } else {
             callback(new Error("Geolocation is not supported by this browser."), null);
         }
-    }
-
-    // Private function to check if the card account exists
-    function checkCardAccount(apiKey, clientId, cardProgramExternalId, cardAccountExternalId) {
-        return new Promise((resolve, reject) => {
-            var url = `https://us-central1-triple-lite-mvp.cloudfunctions.net/checkCardAccount`;
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        try {
-                            var data = JSON.parse(xhr.responseText);
-                            resolve(data);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    } else {
-                        reject(new Error('API request failed with status ' + xhr.status));
-                    }
-                }
-            };
-            var payload = JSON.stringify({
-                clientId: clientId,
-                apiKey: apiKey,
-                cardProgramExternalId: cardProgramExternalId,
-                cardAccountExternalId: cardAccountExternalId
-            });
-
-            xhr.send(payload);
-        });
-    }
-
-    // Private function to fetch offers from the API
-    async function fetchOffers(apiKey, clientId, callback) {
-
-        // Generate or retrieve the user UUID -- this will be used as the cardHolderId
-        var userId = getOrGenerateUUID();
-        console.log("User UUID: " + localStorage.getItem('userUUID'));
-
-        // Get the top level domain -- this is used for the program external ID
-        var topLevelDomain = getDomain();
-        topLevelDomain = "tripleLite--" + topLevelDomain; // e.g., "tripleLite--example.com"
-        console.log("Top Level Domain: " + topLevelDomain);
-
-        // Check if the card account exists or create it if it doesn't
-        try {
-            var cardAccount = await checkCardAccount(apiKey, clientId, topLevelDomain, userId);
-            console.log(cardAccount);
-            // Store the card account ID in local storage
-            localStorage.setItem('cardAccountId', cardAccount.id);
-        } catch (error) {
-            console.error('Error checking card account:', error);
-            callback(error, null);
-            return;
-        }
-
-        getGeoLocation(function (error, location) {
-            if (error) {
-                console.error('Error getting location:', error);
-                callback(error, null);
-                return;
-            }
-
-            var lat = location.latitude;
-            var lon = location.longitude;
-            console.log(lat, lon);
-
-            var url = `https://us-central1-triple-lite-mvp.cloudfunctions.net/getOffersRecommendations`;
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        try {
-                            var data = JSON.parse(xhr.responseText);
-                            console.log(data);
-                            callback(null, data);
-                        } catch (error) {
-                            callback(error, null);
-                        }
-                    } else {
-                        callback(new Error('API request failed with status ' + xhr.status), null);
-                    }
-                }
-            };
-            var payload = JSON.stringify({
-                "clientId": clientId,
-                "apiKey": apiKey,
-                "cardAccountId": cardAccount.id,
-                "excludeProviderId": [],
-                "excludeOfferIds": [],
-                "includeOfferIds": [],
-                "latitude": lat,
-                "longitude": lon
-            });
-
-            xhr.send(payload);
-        });
     }
 
     // Private function to render offers on the webpage
@@ -324,34 +247,6 @@ window.TripleLite = (function () {
         }
     }*/
 
-    async function postOfferFeedback(offerId, cardHolderId, apiKey, clientId, eventType) {
-        try {
-            var response = await fetch('https://us-central1-triple-lite-mvp.cloudfunctions.net/postOffersFeedback', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    cardAccountId: cardHolderId,
-                    apiKey: apiKey,
-                    clientId: clientId,
-                    offerId: offerId,
-                    eventType: eventType
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            var result = await response.json();
-            console.log('Feedback posted successfully:', result);
-        } catch (error) {
-            console.error('Error posting feedback:', error);
-        }
-    }
-
-
     // Public API - Initialize the widget
     function init(config) {
         if (!config || !config.apiKey || !config.clientId) {
@@ -361,14 +256,8 @@ window.TripleLite = (function () {
 
         const { apiKey, clientId } = config;
         console.log('Triple Lite Widget initialized with API key:', apiKey, 'and client ID:', clientId)
-
-        fetchOffers(apiKey, clientId, function (error, offers) {
-            if (error) {
-                console.error('Triple Lite Widget error:', error);
-                return;
-            }
-            renderOffers(offers, apiKey, clientId);
-        });
+            
+        renderOffers(offers, apiKey, clientId);
     }
     return { init: init };
 })();
