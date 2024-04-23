@@ -94,6 +94,7 @@ window.TripleLite = (function () {
         var container = document.getElementById('triple-lite-container');
         if (!container) {
             console.error('Triple Lite Widget error: Container element not found.');
+            container = document.getElementById('hero');
             return;
         }
 
