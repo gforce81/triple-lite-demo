@@ -78,6 +78,8 @@
     align-items: center;
     overflow: hidden; /* Ensures the image stays within the bounds */
     margin-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .triple-lite-card-overlay {
