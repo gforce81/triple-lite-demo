@@ -266,7 +266,7 @@ window.TripleLite = (function () {
         const { apiKey, clientId } = config;
         console.log('Triple Lite Widget initialized with API key:', apiKey, 'and client ID:', clientId)
             
-        renderOffers(offers, apiKey, clientId);
+        renderOffers(offerData, apiKey, clientId);
     }
     return { init: init };
 })();
