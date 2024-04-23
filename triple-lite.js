@@ -95,7 +95,7 @@ window.TripleLite = (function () {
         if (!container) {
             console.error('Triple Lite Widget error: Container element not found.');
             container = document.getElementById('hero');
-            return;
+            //return;
         }
 
         // Create a row
